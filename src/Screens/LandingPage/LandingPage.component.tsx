@@ -1,25 +1,38 @@
 import React from 'react';
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
 import ParticleComponent from "./Particle.component";
-import { CardContentAbsolute } from './styles'
-import { Typography } from "@material-ui/core";
-import { ButtonFlexStart } from "./styles";
-
+import {Box, Typography} from "@material-ui/core";
+import {Link} from "react-router-dom";
+import {routes} from "../../Router";
+import MenuItem from "@material-ui/core/MenuItem";
 
 
 const LandingPageComponent = () => {
-    return (
-        <Card>
-            <CardMedia>
-<ParticleComponent />
-            </CardMedia>
-            <CardContentAbsolute>
-                <Typography variant={"h3"}>Hi, I'm Samuel :) I like coding!</Typography>
-<ButtonFlexStart>See my work</ButtonFlexStart>
-            </CardContentAbsolute>
-        </Card>
 
+
+    return (
+<>
+
+
+
+<ParticleComponent />
+    <div
+        style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)'
+        }}
+    >
+        <Box display={'flex'} flexDirection={'column'}>
+        <Typography variant={'h4'}>Hi, I'm Samuel :) I like coding!</Typography>
+
+                <MenuItem component={Link} to={routes.projectsPath}><Typography>See my Work</Typography></MenuItem>
+
+        </Box>
+    </div>
+
+
+</>
     );
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import Particles from "react-tsparticles";
+import theme from "../../Theme";
 
 const ParticleComponent = () => {
     return (
@@ -8,7 +9,7 @@ const ParticleComponent = () => {
             options={{
                 background: {
                     color: {
-                        value: "f5f0e3",
+                        value: theme.palette.primary.main,
                     },
                 },
                 fpsLimit: 60,
@@ -43,10 +44,10 @@ const ParticleComponent = () => {
                 },
                 particles: {
                     color: {
-                        value: "#f0134d",
+                        value: theme.palette.secondary.main,
                     },
                     links: {
-                        color: "#ff6f5e",
+                        color: theme.palette.secondary.main,
                         distance: 150,
                         enable: true,
                         opacity: 0.5,
@@ -82,6 +83,15 @@ const ParticleComponent = () => {
                     },
                 },
                 detectRetina: true,
+            }}
+            style={{
+                position: "fixed !important",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                background: `#000000`,
+                zIndex: 10
             }}
         />
     );

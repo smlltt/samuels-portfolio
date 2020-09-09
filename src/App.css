@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -11,6 +13,12 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.sliderimg{
+  width: 100%;
+  height: 60vh;
+  object-fit: cover
 }
 
 .App-header {
