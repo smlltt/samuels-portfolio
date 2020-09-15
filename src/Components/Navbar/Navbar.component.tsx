@@ -1,24 +1,51 @@
-import React from 'react';
-import {Box, AppBar, MenuList, Toolbar} from "@material-ui/core";
+import React, {FC, useState} from 'react';
+import {Box, MenuList,Paper} from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
-import theme from "../../Theme";
 import {NavbarMenuItemsTypography} from "./styles";
-import { Link } from 'react-router-dom';
-import { routes } from '../../Router'
+import Headroom from 'react-headroom';
 
-const NavbarComponent = () => {
+
+
+interface OwnProps {
+  onSelection(section:string): void;
+}
+
+const menuItemKeys = ['Projects', 'About', 'Contact'];
+
+const NavbarComponent:FC<OwnProps>= ({onSelection}) => {
+
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const handleMenuItemClick = (index: number, section: string) => {
+        setSelectedIndex(index);
+      onSelection(section);
+    };
+
+    const mappedMenuItemKeys = menuItemKeys.map((key, index)=>(
+  <MenuItem
+    key={key}
+    selected={index === selectedIndex}
+  onClick={() => handleMenuItemClick(index, key)}
+  >
+      <NavbarMenuItemsTypography>
+      {key}
+      </NavbarMenuItemsTypography>
+  </MenuItem>
+    ));
+
     return (
         <>
-        <AppBar style={{ background: theme.palette.primary.main}}>
+          <Headroom>
+
+        <Paper>
         <MenuList>
             <Box display='flex' justifyContent="flex-end">
-            <MenuItem component={Link} to={routes.projectsPath}><NavbarMenuItemsTypography>Projects</NavbarMenuItemsTypography></MenuItem>
-            <MenuItem component={Link} to={routes.aboutPath}><NavbarMenuItemsTypography>About</NavbarMenuItemsTypography></MenuItem>
-            <MenuItem component={Link} to={routes.contactPath}><NavbarMenuItemsTypography>Contact</NavbarMenuItemsTypography></MenuItem>
+                {mappedMenuItemKeys}
             </Box>
         </MenuList>
-        </AppBar>
-    <Toolbar/>
+        </Paper>
+
+            </Headroom>
+
     </>
     );
 };

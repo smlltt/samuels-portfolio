@@ -3,11 +3,7 @@ import LandingPageComponent from "./LandingPage.component";
 
 
 const LandingPage = () => {
-    return (
-        <div>
-            <LandingPageComponent />
-        </div>
-    );
+    return <LandingPageComponent />
 };
 
 export default LandingPage;

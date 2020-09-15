@@ -1,12 +1,30 @@
-import React from 'react';
-import ProjectsCarousel from "./Carousel";
+import React, {FC, useEffect} from 'react';
+import ProjectsCards from "./Carousel";
+import {scrollComponents} from '../../SharedLogic';
 
-const Projects = () => {
+
+interface OwnProps {
+  selected: string;
+}
+
+
+const Projects: FC<OwnProps> = ({selected}) => {
+
+
+  useEffect(() => {
+    if (selected === 'Projects') {
+      scrollComponents.scrollToTop();
+    }
+  }, [selected]);
+
     return (
 <>
-            <ProjectsCarousel/>
+
+
+            <ProjectsCards/>
     {/*        per non dimenticarmi l'attribuzione!!!*/}
-    <a href="https://www.vecteezy.com/free-vector/background">Background Vectors by Vecteezy</a>
+
+
 </>
     );
 };

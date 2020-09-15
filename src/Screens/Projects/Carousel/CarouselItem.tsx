@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Collapse, Grid, IconButton, Typography} from "@material-ui/core";
+import {Box, Collapse, Grid, IconButton, Typography} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -10,16 +10,17 @@ import clsx from "clsx";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         media: {
             height: 0,
-            [theme.breakpoints.up('sm')]: {
-                paddingTop: '90.25%'
-            },
-            [theme.breakpoints.down('sm')]: {
-                paddingTop: '60.25%'
-            },
+            // [theme.breakpoints.up('sm')]: {
+            //     paddingTop: '100.25%'
+            // },
+
+                paddingTop: '100.25%'
+            ,
         },
         expand: {
             transform: 'rotate(0deg)',
@@ -38,6 +39,19 @@ const useStyles = makeStyles((theme: Theme) =>
 //     class: how should I type it?
 // }
 // @ts-ignore
+
+// interface Item {
+//     title: string,
+//     imgSrc: string,
+//     description: string,
+//     link: string
+// }
+//
+// interface  OwnProps {
+//     item: Item,
+//     openExternalLinkToProject(link: string): void;
+// }
+
 const CarouselItem = (item : any) => {
 
     const classes = useStyles();
@@ -49,10 +63,12 @@ const CarouselItem = (item : any) => {
     return(
         <Grid item md={3}>
         <Card>
+            <Box onClick={()=> window.open(item.link)}>
             <Grid item container justify={'center'}>
             <CardHeader title={item.title}></CardHeader>
             </Grid>
             <CardMedia className={classes.media} image={item.imgSrc}></CardMedia>
+        </Box>
             <CardActions disableSpacing>
                 <IconButton
                     className={clsx(classes.expand, {
@@ -75,7 +91,7 @@ const CarouselItem = (item : any) => {
         </Grid>
 
     )
-}
+};
 
 
 export default CarouselItem;
