@@ -1,6 +1,7 @@
 import React, {FC, useEffect} from 'react';
 import ProjectsCards from "./Carousel";
 import {scrollComponents} from '../../SharedLogic';
+import {Box, Container} from "@material-ui/core";
 
 
 interface OwnProps {
@@ -19,11 +20,24 @@ const Projects: FC<OwnProps> = ({selected}) => {
 
     return (
 <>
+  {/*<div*/}
+  {/*  style={{*/}
+  {/*  backgroundImage: `url("${background}")`,backgroundRepeat: 'no-repeat',width:'100%',height:'100%',*/}
+  {/*}}>*/}
 
+  <div
+    style={{
+      backgroundRepeat: 'no-repeat',width:'100%',height:'100%',
+    }}>
+
+    <Box style={{display:'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', width: '100wh'}}>
+      <Container>
 
             <ProjectsCards/>
-    {/*        per non dimenticarmi l'attribuzione!!!*/}
+      </Container>
 
+    </Box>
+  </div>
 
 </>
     );

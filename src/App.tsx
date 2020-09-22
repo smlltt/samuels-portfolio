@@ -4,11 +4,11 @@ import LandingPage from "./Screens/LandingPage";
 import Projects from "./Screens/Projects";
 import Navbar from "./Components/Navbar";
 import About from "./Screens/About/About";
-import Contact from "./Screens/Contact/Contact";
+import Index from "./Screens/Contact/Contact";
 import { routes } from './Router'
 import {useLocation} from "react-router-dom";
 import {Box} from "@material-ui/core";
-import {BackgroundImage} from "./Screens/Projects/styles";
+import ScrollToTop from "react-scroll-to-top";
 
 
 
@@ -30,8 +30,8 @@ const [selectedComponent, setSelectedComponent] = useState('Projects');
 
             <Navbar onSelection={handleComponentSelection}/>
             {/*<Switch>*/}
-
-                  <BackgroundImage>
+  <ScrollToTop smooth />
+                  {/*<BackgroundImage>*/}
               <Box
                 style={{
                   display: "flex",
@@ -47,8 +47,8 @@ const [selectedComponent, setSelectedComponent] = useState('Projects');
             {/*<Route path={routes.contactPath} component={Contact} />*/}
 
 
-                {/*<a href="https://www.vecteezy.com/free-vector/background">vedo componetne materiaul ui da usare Background Vectors by Vecteezy</a>*/}
-
+                {/* light one: <a href="https://www.vecteezy.com/free-vector/background">vedo componetne materiaul ui da usare Background Vectors by Vecteezy</a>*/}
+                {/* black one: <a href='https://www.freepik.com/vectors/background'>Background vector created by vector_corp - www.freepik.com</a>*/}
               </Box>
                     <Box
                       style={{
@@ -67,9 +67,9 @@ const [selectedComponent, setSelectedComponent] = useState('Projects');
                         height: '100%'
                       }}
                     >
-                      <Contact selected={selectedComponent}/>
+                      <Index selected={selectedComponent}/>
                     </Box>
-                  </BackgroundImage>
+                  {/*</BackgroundImage>*/}
 
 
             {/*</Switch>*/}
