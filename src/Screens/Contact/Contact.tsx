@@ -1,14 +1,74 @@
-import React from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
+import {Box, Container} from "@material-ui/core";
+import {scrollComponents} from '../../SharedLogic';
+import ContactComponent from "./Contact Component";
+import {emailjsApi} from "../../Services/emailjs";
 
-const Contact = () => {
+
+interface OwnProps {
+  selected: string;
+}
+
+
+const Contact: FC<OwnProps> = ({selected}) => {
+
+  const ref = useRef<HTMLInputElement>(null);
+  const [error, setError] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    scrollComponents.scrollComponentIntoView('Contact', selected, ref)
+  }, [selected]);
+
+  const toggleError = () => setError(!error);
+
+  const handlePopoverClose = () => toggleError();
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+
+    setAnchorEl(event.currentTarget);
+
+    emailjsApi.sendEmail('czesc','dd@fd.it','hopefully last test :P')
+      .then((res) => {
+        if (error){
+          toggleError();
+        }
+        else {
+          console.log(res.text);
+        }
+      }, (err) => {
+        if (!error){
+          toggleError();
+        }
+        //use reCaptcha
+        console.log(err.text);
+      });
+  };
+
     return (
-        <div>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur
+      // <div
+      //   ref={ref}
+      //   style={{
+      //   backgroundImage: `url("${background}")`,backgroundRepeat: 'no-repeat',width:'100%',height:'100%',
+      // }}>
+      <div
+        ref={ref}
+        style={{
+          backgroundRepeat: 'no-repeat',width:'100%',height:'100%',
+        }}>
+        <Container>
 
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur
 
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur
+          <Box style={{display:'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', width: '100wh'}}>
 
+            <ContactComponent
+              error={error}
+              handleClick={handleClick}
+              anchorEl={anchorEl}
+              onClose={handlePopoverClose}
+            />
+          </Box>
+        </Container>
         </div>
     );
 };
