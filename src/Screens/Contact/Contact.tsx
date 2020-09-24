@@ -7,38 +7,46 @@ import {emailjsApi} from "../../Services/emailjs";
 
 interface OwnProps {
   selected: string;
+  hideScrollToTop(): void;
+  showScrollToTop(): void;
+  contactButtonClicked: boolean;
 }
 
 
-const Contact: FC<OwnProps> = ({selected}) => {
+const Contact: FC<OwnProps> = ({selected, hideScrollToTop, showScrollToTop, contactButtonClicked}) => {
 
   const ref = useRef<HTMLInputElement>(null);
   const [error, setError] = useState(false);
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     scrollComponents.scrollComponentIntoView('Contact', selected, ref)
   }, [selected]);
 
-  const toggleError = () => setError(!error);
+  const toggleError = () => {
+    showScrollToTop();
+    setError(!error);
+  };
 
   const handlePopoverClose = () => toggleError();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-
+    setLoading(true);
+    hideScrollToTop();
     setAnchorEl(event.currentTarget);
 
     emailjsApi.sendEmail('czesc','dd@fd.it','hopefully last test :P')
       .then((res) => {
+        setLoading(false);
+        console.log(res.text);
         if (error){
-          toggleError();
-        }
-        else {
-          console.log(res.text);
+          setError(false);
         }
       }, (err) => {
+        setLoading(false);
         if (!error){
-          toggleError();
+          setError(true);
         }
         //use reCaptcha
         console.log(err.text);
@@ -66,6 +74,8 @@ const Contact: FC<OwnProps> = ({selected}) => {
               handleClick={handleClick}
               anchorEl={anchorEl}
               onClose={handlePopoverClose}
+              contactButtonClicked={contactButtonClicked}
+              loading={loading}
             />
           </Box>
         </Container>

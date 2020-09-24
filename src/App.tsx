@@ -4,7 +4,7 @@ import LandingPage from "./Screens/LandingPage";
 import Projects from "./Screens/Projects";
 import Navbar from "./Components/Navbar";
 import About from "./Screens/About/About";
-import Index from "./Screens/Contact/Contact";
+import Contact from "./Screens/Contact/Contact";
 import { routes } from './Router'
 import {useLocation} from "react-router-dom";
 import {Box} from "@material-ui/core";
@@ -15,6 +15,10 @@ import ScrollToTop from "react-scroll-to-top";
 function App() {
 const location = useLocation().pathname;
 const [selectedComponent, setSelectedComponent] = useState('Projects');
+const [contactButtonClicked, setContactButtonClicked] = useState(false);
+
+  const hideScrollToTop = () => setContactButtonClicked(true);
+  const showScrollToTop = () => setContactButtonClicked(false);
 
   const handleComponentSelection: (section: string)=>void = (section: string) => {
     setSelectedComponent(section)
@@ -30,7 +34,8 @@ const [selectedComponent, setSelectedComponent] = useState('Projects');
 
             <Navbar onSelection={handleComponentSelection}/>
             {/*<Switch>*/}
-  <ScrollToTop smooth />
+  {!contactButtonClicked ? <ScrollToTop smooth /> : null}
+
                   {/*<BackgroundImage>*/}
               <Box
                 style={{
@@ -67,7 +72,11 @@ const [selectedComponent, setSelectedComponent] = useState('Projects');
                         height: '100%'
                       }}
                     >
-                      <Index selected={selectedComponent}/>
+                      <Contact selected={selectedComponent}
+                               hideScrollToTop={hideScrollToTop}
+                               showScrollToTop={showScrollToTop}
+                               contactButtonClicked={contactButtonClicked}
+                      />
                     </Box>
                   {/*</BackgroundImage>*/}
 
