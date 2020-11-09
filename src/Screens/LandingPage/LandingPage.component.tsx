@@ -1,9 +1,10 @@
 import React from 'react';
 import ParticleComponent from "./Particle.component";
-import {Box, Typography} from "@material-ui/core";
+import {Box} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import {routes} from "../../Router";
 import MenuItem from "@material-ui/core/MenuItem";
+import {StyledButton, StyledTypography} from "./styles";
 
 
 const LandingPageComponent = () => {
@@ -24,9 +25,9 @@ const LandingPageComponent = () => {
         }}
     >
         <Box display={'flex'} flexDirection={'column'}>
-        <Typography variant={'h4'}>Hi, I'm Samuel :) I like coding!</Typography>
+        <StyledTypography>Hi, I'm Samuel :) I like coding!</StyledTypography>
 
-                <MenuItem component={Link} to={routes.projectsPath}><Typography>See my Work</Typography></MenuItem>
+                <MenuItem component={Link} to={routes.projectsPath}><StyledButton>See my Work</StyledButton></MenuItem>
 
         </Box>
     </div>

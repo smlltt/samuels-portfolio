@@ -11,11 +11,11 @@ const ProjectsCards = () => {
 
     const [imgs] = useState([
         {title:'yoga-hub',imgSrc:'https://image.flaticon.com/icons/svg/2991/2991411.svg',
-            description:'This app does this and this and this and this and this and this and this.', link: 'https://github.com/Noicoo/yoga-hub'},
+            description:'A yoga video database, maintained by the user themselves. Main technologies used: React JS, Redux, Firebase. Currenly under development.', link: 'https://github.com/Noicoo/yoga-hub'},
         {title:'note-app',imgSrc:'https://image.flaticon.com/icons/svg/752/752326.svg',
-            description:'This app does this and this and this and this and this and this and this.', link: 'https://codesandbox.io/s/friendly-raman-wqweg'},
+            description:'Note app developed with the purpose of learning React.', link: 'https://codesandbox.io/s/friendly-raman-wqweg'},
         {title:'weather-app',imgSrc:'https://image.flaticon.com/icons/svg/2917/2917242.svg',
-            description:'This app does this and this and this and this and this and this and this.', link: 'https://codesandbox.io/s/trusting-kowalevski-lt0eq'}
+            description:'Weather app developed with the purpose of learning React and how to interface a front-end environment with a rest API.', link: 'https://codesandbox.io/s/trusting-kowalevski-lt0eq'}
         ]);
 
 

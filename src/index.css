@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.is-active {
+background: #1f1f1f;
+  color: white!important;
+}
+
+/*check how modular css work: make this accessible only for navbar component*/

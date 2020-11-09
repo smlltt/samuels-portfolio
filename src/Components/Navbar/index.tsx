@@ -2,15 +2,14 @@ import React, {FC} from 'react';
 import NavbarComponent from "./Navbar.component";
 
 
-interface OwnProps {
-  onSelection(section: string): void;
-}
 
 
-const Navbar:FC<OwnProps> = ({onSelection}) => {
+const Navbar:FC= () => {
+
+
     return (
         <div>
-<NavbarComponent onSelection={onSelection}/>
+            <NavbarComponent />
         </div>
     );
 };

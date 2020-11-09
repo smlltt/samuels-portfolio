@@ -1,49 +1,51 @@
-import React, {FC, useState} from 'react';
-import {Box, MenuList,Paper} from "@material-ui/core";
+import React, {FC} from 'react';
+import {Box, Container, MenuList, Paper} from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
-import {NavbarMenuItemsTypography} from "./styles";
+import {NavbarAnchor, StyledMenuItem} from "./styles";
 import Headroom from 'react-headroom';
+//@ts-ignore
+import ScrollspyNav from "react-scrollspy-nav";
 
-
-
-interface OwnProps {
-  onSelection(section:string): void;
-}
 
 const menuItemKeys = ['Projects', 'About', 'Contact'];
 
-const NavbarComponent:FC<OwnProps>= ({onSelection}) => {
+const NavbarComponent:FC= () => {
 
-    const [selectedIndex, setSelectedIndex] = useState(0);
-    const handleMenuItemClick = (index: number, section: string) => {
-        setSelectedIndex(index);
-      onSelection(section);
-    };
+    const mappedMenuItemKeys = menuItemKeys.map((key)=>(
 
-    const mappedMenuItemKeys = menuItemKeys.map((key, index)=>(
-  <MenuItem
-    key={key}
-    selected={index === selectedIndex}
-  onClick={() => handleMenuItemClick(index, key)}
-  >
-      <NavbarMenuItemsTypography>
-      {key}
-      </NavbarMenuItemsTypography>
-  </MenuItem>
+    <MenuItem
+        key={key}
+    >
+        <StyledMenuItem>
+            <NavbarAnchor href={'#'+ key}>{key}</NavbarAnchor>
+        </StyledMenuItem>
+    </MenuItem>
     ));
 
     return (
         <>
           <Headroom>
-
+              <Container>
         <Paper>
-        <MenuList>
-            <Box display='flex' justifyContent="flex-end">
-                {mappedMenuItemKeys}
-            </Box>
-        </MenuList>
-        </Paper>
 
+
+
+        <MenuList>
+            <ScrollspyNav
+                scrollTargetIds={menuItemKeys}
+                activeNavClass="is-active"
+
+            >
+            <Box display='flex' justifyContent="flex-end">
+
+                {mappedMenuItemKeys}
+
+            </Box>
+            </ScrollspyNav>
+        </MenuList>
+
+        </Paper>
+          </Container>
             </Headroom>
 
     </>
