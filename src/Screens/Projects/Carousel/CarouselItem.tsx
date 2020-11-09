@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import {Box, Collapse, Grid, IconButton, Typography} from "@material-ui/core";
+import {Box, Collapse, Grid, IconButton} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from "@material-ui/core/CardActions";
 import clsx from "clsx";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import {StyledCardHeader, StyledCardMedia, StyledTypography} from "../styles";
+
 
 
 
@@ -65,9 +65,9 @@ const CarouselItem = (item : any) => {
         <Card>
             <Box onClick={()=> window.open(item.link)}>
             <Grid item container justify={'center'}>
-            <CardHeader title={item.title}></CardHeader>
+            <StyledCardHeader title={item.title} disableTypography></StyledCardHeader>
             </Grid>
-            <CardMedia className={classes.media} image={item.imgSrc}></CardMedia>
+            <StyledCardMedia className={classes.media} image={item.imgSrc}></StyledCardMedia>
         </Box>
             <CardActions disableSpacing>
                 <IconButton
@@ -84,7 +84,7 @@ const CarouselItem = (item : any) => {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <Typography>{item.description}</Typography>
+                    <StyledTypography>{item.description}</StyledTypography>
                 </CardContent>
             </Collapse>
         </Card>

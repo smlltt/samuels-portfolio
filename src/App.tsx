@@ -12,31 +12,35 @@ import ScrollToTop from "react-scroll-to-top";
 
 
 
-function App() {
-const location = useLocation().pathname;
-const [selectedComponent, setSelectedComponent] = useState('Projects');
+ const App = () => {
+
+//Contact logic
+
 const [contactButtonClicked, setContactButtonClicked] = useState(false);
 
+//App logic
+
+     const location = useLocation().pathname;
+     const scrollToTop = () => {
+         window.scrollTo({top: 0, behavior: 'smooth'});
+     };
   const hideScrollToTop = () => setContactButtonClicked(true);
   const showScrollToTop = () => setContactButtonClicked(false);
-
-  const handleComponentSelection: (section: string)=>void = (section: string) => {
-    setSelectedComponent(section)
-  };
+   const handleScrollToTop = () => {
+       scrollToTop();
+   }
 
   return (
     <div>
         {location===routes.landingPagePath ? <LandingPage /> :
             (
 <>
-                  {/*<BackgroundImage>*/}
-{/*<div>*/}
 
-            <Navbar onSelection={handleComponentSelection}/>
-            {/*<Switch>*/}
-  {!contactButtonClicked ? <ScrollToTop smooth /> : null}
+            <Navbar />
 
-                  {/*<BackgroundImage>*/}
+  {!contactButtonClicked ? <ScrollToTop onClick={handleScrollToTop} /> : null}
+
+    <div id="Projects" >
               <Box
                 style={{
                   display: "flex",
@@ -45,16 +49,12 @@ const [contactButtonClicked, setContactButtonClicked] = useState(false);
                 }}
               >
 
-                <Projects selected={selectedComponent}/>
 
-            {/*<Route path={routes.projectsPath} component={Projects} />*/}
-            {/*<Route path={routes.aboutPath} component={About} />*/}
-            {/*<Route path={routes.contactPath} component={Contact} />*/}
+                <Projects/>
 
-
-                {/* light one: <a href="https://www.vecteezy.com/free-vector/background">vedo componetne materiaul ui da usare Background Vectors by Vecteezy</a>*/}
-                {/* black one: <a href='https://www.freepik.com/vectors/background'>Background vector created by vector_corp - www.freepik.com</a>*/}
               </Box>
+    </div>
+    <div id="About" >
                     <Box
                       style={{
                         display: "flex",
@@ -62,9 +62,11 @@ const [contactButtonClicked, setContactButtonClicked] = useState(false);
                         height: '100%'
                       }}
                     >
-                      <About selected={selectedComponent}/>
-                    </Box>
 
+                      <About/>
+                    </Box>
+    </div>
+    <div id="Contact" >
                     <Box
                       style={{
                         display: "flex",
@@ -72,20 +74,16 @@ const [contactButtonClicked, setContactButtonClicked] = useState(false);
                         height: '100%'
                       }}
                     >
-                      <Contact selected={selectedComponent}
+
+                      <Contact
                                hideScrollToTop={hideScrollToTop}
                                showScrollToTop={showScrollToTop}
                                contactButtonClicked={contactButtonClicked}
                       />
+
                     </Box>
-                  {/*</BackgroundImage>*/}
+    </div>
 
-
-            {/*</Switch>*/}
-
-
-{/*</div>*/}
-{/*                  </BackgroundImage>*/}
                 </>
 
 

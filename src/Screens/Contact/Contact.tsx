@@ -1,28 +1,27 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {Box, Container} from "@material-ui/core";
-import {scrollComponents} from '../../SharedLogic';
 import ContactComponent from "./Contact Component";
 import {emailjsApi} from "../../Services/emailjs";
 
 
+
+
+
 interface OwnProps {
-  selected: string;
   hideScrollToTop(): void;
   showScrollToTop(): void;
   contactButtonClicked: boolean;
 }
 
 
-const Contact: FC<OwnProps> = ({selected, hideScrollToTop, showScrollToTop, contactButtonClicked}) => {
+const Contact: FC<OwnProps> = ({hideScrollToTop, showScrollToTop, contactButtonClicked}) => {
 
-  const ref = useRef<HTMLInputElement>(null);
+
   const [error, setError] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    scrollComponents.scrollComponentIntoView('Contact', selected, ref)
-  }, [selected]);
+
 
   const toggleError = () => {
     showScrollToTop();
@@ -30,6 +29,29 @@ const Contact: FC<OwnProps> = ({selected, hideScrollToTop, showScrollToTop, cont
   };
 
   const handlePopoverClose = () => toggleError();
+
+
+  const handleSubmit =(name: string, email:string, message:string)=>{
+
+      setLoading(true);
+      hideScrollToTop();
+
+      emailjsApi.sendEmail(name,email,message)
+          .then((res) => {
+              setLoading(false);
+              console.log(res.text);
+              if (error){
+                  setError(false);
+              }
+          }, (err) => {
+              setLoading(false);
+              if (!error){
+                  setError(true);
+              }
+              //use reCaptcha
+              console.log(err.text);
+          });
+  }
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setLoading(true);
@@ -54,20 +76,15 @@ const Contact: FC<OwnProps> = ({selected, hideScrollToTop, showScrollToTop, cont
   };
 
     return (
-      // <div
-      //   ref={ref}
-      //   style={{
-      //   backgroundImage: `url("${background}")`,backgroundRepeat: 'no-repeat',width:'100%',height:'100%',
-      // }}>
+
       <div
-        ref={ref}
         style={{
           backgroundRepeat: 'no-repeat',width:'100%',height:'100%',
         }}>
         <Container>
 
 
-          <Box style={{display:'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', width: '100wh'}}>
+          <Box style={{display:'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', width: '100wh'}}>
 
             <ContactComponent
               error={error}
@@ -76,6 +93,7 @@ const Contact: FC<OwnProps> = ({selected, hideScrollToTop, showScrollToTop, cont
               onClose={handlePopoverClose}
               contactButtonClicked={contactButtonClicked}
               loading={loading}
+              handleSubmit={handleSubmit}
             />
           </Box>
         </Container>

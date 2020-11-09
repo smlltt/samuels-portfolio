@@ -1,5 +1,9 @@
 import React, {FC} from 'react';
 import EmailSubmissionResultComponent from "./EmailSubmissionResult.component";
+import ContactForm from "./ContactForm";
+import {Container} from "@material-ui/core";
+
+
 
 interface OwnProps {
   error: boolean;
@@ -8,17 +12,20 @@ interface OwnProps {
   onClose(): void;
   contactButtonClicked: boolean;
   loading: boolean;
+    handleSubmit(name: string, email:string, message:string): void;
 }
 
-const ContactComponent: FC<OwnProps> = ({error, handleClick, anchorEl, onClose, contactButtonClicked, loading}) => {
+const ContactComponent: FC<OwnProps> = ({handleSubmit, error, anchorEl, onClose, contactButtonClicked, loading}) => {
 
   return (
-    <div>
+
+      <Container maxWidth="xs">
 
       {/*add formik: name, email, message. onSubmit sendEmail*/}
-      <button onClick={handleClick}>Send email</button>
+<ContactForm handleSubmit={handleSubmit}/>
       {contactButtonClicked ? <EmailSubmissionResultComponent loading={loading} anchorEl={anchorEl} onClose={onClose} error={error}/> : null}
-    </div>
+      </Container>
+
   );
 };
 

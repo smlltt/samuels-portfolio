@@ -40,6 +40,7 @@ const EmailSubmissionResultComponent: FC<OwnProps> = ({anchorEl, onClose, error,
 
           {loading?
             <BeatLoader
+                size={20}
             color={"#000"}
             loading={true}
           />
