@@ -1,20 +1,18 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-
+import { createMuiTheme } from '@material-ui/core/styles'
 
 const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: '#FFFFFF',
-
-        },
-        secondary: {
-            main: '#000000',
-            dark: '#202020'
-        },
+  palette: {
+    primary: {
+      main: '#FFFFFF',
     },
-    typography: {
-        fontFamily: 'Arial',
+    secondary: {
+      main: '#000000',
+      dark: '#202020',
     },
-});
+  },
+  typography: {
+    fontFamily: 'Arial',
+  },
+})
 
-export default theme;
+export default theme

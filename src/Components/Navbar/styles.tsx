@@ -1,8 +1,5 @@
-
-import {MenuItem} from "@material-ui/core";
-import styled from "styled-components";
-
-
+import { MenuItem } from '@material-ui/core'
+import styled from 'styled-components'
 
 export const NavbarAnchor = styled.a`
 
@@ -32,7 +29,7 @@ export const NavbarAnchor = styled.a`
             &:hover{
     color: white;
     
-`;
+`
 
 export const StyledMenuItem = styled(MenuItem)`
 
@@ -44,11 +41,4 @@ export const StyledMenuItem = styled(MenuItem)`
             &:hover{
     border:solid 2px #1f1f1f;
     background: #1f1f1f;
-`;
-
-
-
-
-
-
-
+`

@@ -1,8 +1,7 @@
-import * as constants from './constants';
-
+import * as constants from './constants'
 
 export const emailjsConfig = {
   serviceId: constants.emailjsServiceId,
   templateId: constants.emailjsTemplateId,
-  userId: constants.emailjsUserId
-};
+  userId: constants.emailjsUserId,
+}
