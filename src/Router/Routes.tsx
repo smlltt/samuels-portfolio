@@ -1,3 +1,3 @@
-export const landingPagePath = '/'
-export const projectsPath = '/projects'
+export const landingPagePath = '/samuels-portfolio'
+export const projectsPath = '/samuels-portfolio/projects'
 
