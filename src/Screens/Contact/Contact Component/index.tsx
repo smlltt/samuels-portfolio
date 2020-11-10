@@ -5,8 +5,6 @@ import { Container } from '@material-ui/core'
 
 interface OwnProps {
   error: boolean
-  handleClick(event: React.MouseEvent<HTMLButtonElement>): void
-  anchorEl: HTMLButtonElement | null
   onClose(): void
   contactButtonClicked: boolean
   loading: boolean
@@ -16,7 +14,6 @@ interface OwnProps {
 const ContactComponent: FC<OwnProps> = ({
   handleSubmit,
   error,
-  anchorEl,
   onClose,
   contactButtonClicked,
   loading,
@@ -27,7 +24,6 @@ const ContactComponent: FC<OwnProps> = ({
       {contactButtonClicked ? (
         <EmailSubmissionResultComponent
           loading={loading}
-          anchorEl={anchorEl}
           onClose={onClose}
           error={error}
         />

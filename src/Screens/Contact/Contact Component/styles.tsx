@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@material-ui/core/'
+import {Button, Typography} from '@material-ui/core/'
 import styled from 'styled-components'
 import { TextField } from 'formik-material-ui'
 
@@ -84,4 +84,11 @@ export const MessageTextField = styled(TextField)`
   .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
     border: 2px solid black;
   }
+`
+
+export const PopoverTypography = styled(Typography)`
+@media (max-width: 360px) {
+    font-size: 0.5rem;
+    letter-spacing: 1px;
+}
 `
