@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import Popover from '@material-ui/core/Popover'
-import { Grid, Paper, Typography } from '@material-ui/core'
+import {Grid, Paper} from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import BeatLoader from 'react-spinners/BeatLoader'
+import {PopoverTypography} from "./styles";
 
 interface OwnProps {
-  anchorEl: HTMLButtonElement | null
   onClose(): void
   error: boolean
   loading: boolean
@@ -13,27 +13,26 @@ interface OwnProps {
 
 const submissionResult = (error: boolean) => {
   return error ? (
-    <Typography>
+    <PopoverTypography>
       Something went wrong :( Contact me still! This is my email:
       samuel.liotta@gmail.com
-    </Typography>
+    </PopoverTypography>
   ) : (
-    <Typography>
+    <PopoverTypography>
       Your message was successfully sent to samuel.liotta@gmail.com :)
-    </Typography>
+    </PopoverTypography>
   )
 }
 
 const EmailSubmissionResultComponent: FC<OwnProps> = ({
-  anchorEl,
   onClose,
   error,
   loading,
 }) => {
   return (
+
     <Popover
       open={true}
-      anchorEl={anchorEl}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'center',
@@ -50,19 +49,11 @@ const EmailSubmissionResultComponent: FC<OwnProps> = ({
           ) : (
             submissionResult(error)
           )}
-
-          {/*{error ?*/}
-
-          {/*  <Typography>Something went wrong :( Contact me still! This is my email: samuel.liotta@gmail.com</Typography>*/}
-
-          {/*  :*/}
-          {/*  <Typography>Your message was successfully sent to samuel.liotta@gmail.com :)</Typography>*/}
-          {/*}*/}
-
           <CloseIcon onClick={onClose} />
         </Grid>
       </Paper>
     </Popover>
+
   )
 }
 

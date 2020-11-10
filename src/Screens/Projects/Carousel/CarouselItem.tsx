@@ -12,10 +12,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     media: {
       height: 0,
-      // [theme.breakpoints.up('sm')]: {
-      //     paddingTop: '100.25%'
-      // },
-
       paddingTop: '100.25%',
     },
     expand: {
@@ -30,23 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 )
-// interface Item {
-//     item: Object,
-//     class: how should I type it?
-// }
-// @ts-ignore
 
-// interface Item {
-//     title: string,
-//     imgSrc: string,
-//     description: string,
-//     link: string
-// }
-//
-// interface  OwnProps {
-//     item: Item,
-//     openExternalLinkToProject(link: string): void;
-// }
 
 const CarouselItem = (item: any) => {
   const classes = useStyles()
@@ -75,7 +55,6 @@ const CarouselItem = (item: any) => {
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
             })}
-            // className={expanded ? classes.expandOpen : classes.expand}
             onClick={handleExpandClick}
             aria-expanded={expanded}
             aria-label="show more"

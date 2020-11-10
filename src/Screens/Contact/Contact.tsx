@@ -15,7 +15,6 @@ const Contact: FC<OwnProps> = ({
   contactButtonClicked,
 }) => {
   const [error, setError] = useState(false)
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
   const [loading, setLoading] = useState(false)
 
   const toggleError = () => {
@@ -42,35 +41,11 @@ const Contact: FC<OwnProps> = ({
         if (!error) {
           setError(true)
         }
-        //use reCaptcha
         console.log(err.text)
       },
     )
   }
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setLoading(true)
-    hideScrollToTop()
-    setAnchorEl(event.currentTarget)
-
-    emailjsApi.sendEmail('czesc', 'dd@fd.it', 'hopefully last test :P').then(
-      (res) => {
-        setLoading(false)
-        console.log(res.text)
-        if (error) {
-          setError(false)
-        }
-      },
-      (err) => {
-        setLoading(false)
-        if (!error) {
-          setError(true)
-        }
-        //use reCaptcha
-        console.log(err.text)
-      },
-    )
-  }
 
   return (
     <div
@@ -92,8 +67,6 @@ const Contact: FC<OwnProps> = ({
         >
           <ContactComponent
             error={error}
-            handleClick={handleClick}
-            anchorEl={anchorEl}
             onClose={handlePopoverClose}
             contactButtonClicked={contactButtonClicked}
             loading={loading}

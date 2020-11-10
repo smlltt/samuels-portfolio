@@ -22,26 +22,15 @@ const contactSchema = yup.object().shape({
 
 const ContactForm: FC<OwnProps> = ({ handleSubmit }) => (
   <div>
-    {/*<Paper>*/}
     <Formik
       initialValues={{ name: '', email: '', message: '' }}
-      // onSubmit={(values, actions) => {
-      //     setTimeout(() => {
-      //         alert(JSON.stringify(values, null, 2));
-      //         actions.setSubmitting(false);
-      //     }, 1000);
-      // }}
       onSubmit={(values, actions) => {
-        handleSubmit(values.name, values.message, values.email)
-        // console.log(values)
+        handleSubmit(values.name, values.email, values.message)
         actions.resetForm()
-        //check other properties!!!
-        // actions.setSubmitting(false)
       }}
       validationSchema={contactSchema}
     >
       {({ isValid }) => (
-        // <Form onChange={() => console.log('change')}>
         <Form>
           <Field
             margin="normal"
@@ -83,7 +72,6 @@ const ContactForm: FC<OwnProps> = ({ handleSubmit }) => (
         </Form>
       )}
     </Formik>
-    {/*</Paper>*/}
   </div>
 )
 
