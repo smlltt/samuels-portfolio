@@ -32,8 +32,6 @@ const ProjectsCards = () => {
     <>
       <Grid container spacing={10} justify="center">
         {mappedImgs}
-
-        {/* <a href="https://www.vecteezy.com/free-vector/background">Background Vectors by Vecteezy fffffghhghgfdfdfdfdfdfdfdfdfd</a> */}
       </Grid>
     </>
   )

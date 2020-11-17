@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './App.css'
-import { useLocation } from 'react-router-dom'
 import { Box } from '@material-ui/core'
 import ScrollToTop from 'react-scroll-to-top'
 import LandingPage from './Screens/LandingPage'
@@ -8,7 +7,7 @@ import Projects from './Screens/Projects'
 import Navbar from './Components/Navbar'
 import About from './Screens/About/About'
 import Contact from './Screens/Contact/Contact'
-import { routes } from './Router'
+
 
 const App = () => {
   // Contact logic
@@ -17,7 +16,7 @@ const App = () => {
 
   // App logic
 
-  const location = useLocation().pathname
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -29,12 +28,13 @@ const App = () => {
 
   return (
     <div>
-      {location === routes.landingPagePath ? (
-        <LandingPage />
-      ) : (
+      {/*{location === routes.landingPagePath ? (*/}
+      {/*  <LandingPage />*/}
+      {/*) : (*/}
         <>
-          <Navbar />
 
+          <Navbar />
+          <LandingPage />
           {!contactButtonClicked ? (
             <ScrollToTop onClick={handleScrollToTop} />
           ) : null}
@@ -77,7 +77,7 @@ const App = () => {
             </Box>
           </div>
         </>
-      )}
+      {/*// ) }*/}
     </div>
   )
 }

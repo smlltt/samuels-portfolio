@@ -1,6 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Typography } from '@material-ui/core'
+import {Box, Button, Typography} from '@material-ui/core'
+
+export const SyledBoxWholeScreen = styled(Box)`
+  @media (max-width: 600px) {
+    
+    height: 100vh;
+}
+`
 
 export const StyledTypography = styled(Typography)`
   font-family: 'Lato', sans-serif;
@@ -31,4 +38,34 @@ export const StyledButton = styled(Button)`
     background: #1f1f1f;
     color: #fff;
   }
+`
+
+export const NavbarAnchor = styled.a`
+
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif; font-weight:400;
+   letter-spacing: 5px;
+       font-size: 12px;
+    @media (min-width: 600px) {
+    
+     padding: 12px 18px;
+    line-height: 19px;
+}
+  @media (max-width: 420px) {
+    font-size: 0.5rem;
+}
+@media (max-width: 360px) {
+    font-size: 0.5rem;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 320px) {
+    font-size: 0.4rem;
+    letter-spacing: 1px;
+}
+            &:hover{
+    color: white;
+    
 `

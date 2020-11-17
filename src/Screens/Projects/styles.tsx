@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { CardHeader, CardMedia, Typography } from '@material-ui/core'
+import {CardHeader, CardMedia, Typography} from '@material-ui/core'
 
 
 
@@ -20,3 +20,4 @@ export const StyledCardHeader = styled(CardHeader)`
 export const StyledCardMedia = styled(CardMedia)`
   cursor: pointer;
 `
+
