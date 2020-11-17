@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
-import { Box, Collapse, Grid, IconButton } from '@material-ui/core'
+import {Box, Collapse, Grid, IconButton} from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardActions from '@material-ui/core/CardActions'
 import clsx from 'clsx'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { StyledCardHeader, StyledCardMedia, StyledTypography } from '../styles'
+import {StyledCardHeader, StyledCardMedia, StyledTypography} from '../styles'
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     media: {
       height: 0,
-      paddingTop: '100.25%',
+      paddingTop: '100%',
     },
     expand: {
       transform: 'rotate(0deg)',
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
     },
     expandOpen: {
-      transform: 'rotate(180deg)',
+      transform: 'rotate(90deg)',
     },
   }),
 )
@@ -36,7 +37,7 @@ const CarouselItem = (item: any) => {
   }
 
   return (
-    <Grid item md={3}>
+    <Grid item sm={3} xs={10}>
       <Card>
         <Box onClick={() => window.open(item.link)}>
           <Grid item container justify={'center'}>
@@ -44,6 +45,7 @@ const CarouselItem = (item: any) => {
               title={item.title}
               disableTypography
             ></StyledCardHeader>
+
           </Grid>
           <StyledCardMedia
             className={classes.media}
@@ -67,6 +69,7 @@ const CarouselItem = (item: any) => {
             <StyledTypography>{item.description}</StyledTypography>
           </CardContent>
         </Collapse>
+
       </Card>
     </Grid>
   )
