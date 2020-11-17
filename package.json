@@ -89,5 +89,5 @@
     "extends": "@imaginary-cloud/react"
   },
   "prettier": "@imaginary-cloud/prettier-config",
-  "homepage": "https://smlltt.github.io/sams-portfolio"
+  "homepage": "https://smlltt.github.io/samus-portfolio"
 }
